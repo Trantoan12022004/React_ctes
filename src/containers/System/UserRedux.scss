@@ -1,0 +1,16 @@
+/* CustomFileInput.scss */
+.fa, .fas {
+margin-left: 5px;
+}
+.preview-image{
+    margin-top: 10px;
+    height: 100px;
+    width: 100%;
+    background: left center no-repeat;
+    background-size: contain;
+}
+
+.form-control:disabled {
+    cursor: not-allowed;
+    border-color: #dee2e6;
+}
