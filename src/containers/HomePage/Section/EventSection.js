@@ -2,7 +2,7 @@ import React, { Component, useState } from 'react';
 import Slider from "react-slick";
 
 // import SectionTitle from '../../components/SectionTitle'
-import SectionTitle from '../../../components/SectionTitle';
+import SectionTitle from '../../../components/SectionTitle/index.js'
 import SingleEvent from '../../../components/Event/SingleEvent';
 
 import events from '../../../data/Events.json';
