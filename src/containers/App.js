@@ -20,7 +20,6 @@ import System from "../routes/System";
 
 import { CustomToastCloseButton } from "../components/CustomToast";
 import HomePage from "./HomePage/HomePage";
-import DetailDoctor from "../containers/Patient/Doctor/DetailDoctor"
 import { height, width } from "@fortawesome/free-brands-svg-icons/fa42Group";
 class App extends Component {
     handlePersistorState = () => {
@@ -71,10 +70,7 @@ class App extends Component {
                                         component={HomePage}
                                     />
 
-                                    <Route
-                                    path="/get-detail-doctor-by-id/:id"
-                                    component={DetailDoctor}
-                                    />
+                               
                                 </Switch>
                             </CustomScrollbars>
                         </div>

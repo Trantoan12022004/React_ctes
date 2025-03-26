@@ -35,10 +35,10 @@
         },
         "admin": {
             "manage-user": "Người dùng",
-            "manage-doctor": "Quản lý bác sĩ",
+            "user-display": "Danh sách người dùng",
             "manage-admin": "Quản lý admin",
             "crud": "CRUD user",
-            "crud-redux": "CRUD Redux",
+            "user-create": "Tạo người dùng mới",
             "manage-clinic": "Quản lý phòng khám",
             "clinic": "Phòng khám",
             "specialty": "Chuyên khoa",

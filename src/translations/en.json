@@ -35,10 +35,10 @@
         },
         "admin": {
             "manage-user": "User",
-            "manage-doctor": "Doctor Management",
+            "user-display": "List of users",
             "manage-admin": "Admin Management",
             "crud": "CRUD user",
-            "crud-redux": "CRUD Redux",
+            "user-create": "Create New User",
             "manage-clinic": "Clinic management",
             "clinic": "Clinic",
             "specialty": "Specialty",

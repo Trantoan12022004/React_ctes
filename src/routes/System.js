@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
 import UserManage from "../containers/System/UserManage";
 import UserRedux from "../containers/System/UserRedux";
+import UserDisplay from "../containers/System/UserDisplay";
 import Header from "../containers/Header/Header";
 import MarkdownEditor from '../containers/System/MarkdownEditor'
 class System extends Component {
@@ -22,6 +23,10 @@ class System extends Component {
                             <Route
                                 path="/system/user-redux"
                                 component={UserRedux}
+                            />
+                            <Route
+                                path="/system/user-display"
+                                component={UserDisplay}
                             />
                             <Route 
                             path="/system/markdown-editor"
