@@ -64,6 +64,22 @@ class UserDisplay extends Component {
             console.error('Error deleting user:', error);
         }
     };
+// Thêm hàm handleUpdateUser
+    handleUpdateUser = async (userData) => {
+        try {
+            let response = await updateUser(userData);
+            if (response && response.data.errCode === 0) {
+                toast.success("Cập nhật người dùng thành công!");
+                await this.getAllUsersFromReact();
+                this.toggleModalEdit(); // Đóng modal sau khi cập nhật
+            } else {
+                toast.error(response.data.errMessage || "Lỗi cập nhật người dùng");
+            }
+        } catch (error) {
+            console.error("Error updating user:", error);
+            toast.error("Đã xảy ra lỗi khi cập nhật");
+        }
+    };
     getAllUsersFromReact = async () => {
         try {
             const response = await getAllUsers();

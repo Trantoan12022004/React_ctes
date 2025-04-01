@@ -1,11 +1,11 @@
 import React  from 'react';
 import { Link } from 'react-router-dom';
 
-import SingleEventTwo from '../../components/Event/SingleEventTwo';
+import SingleEventTwo from '../../../components/Event/SingleEventTwo';
 
 
-import img from '../../assets/images/related-course/1.jpg'
-import events from '../../data/Events.json';
+import img from '../../../assets/images/related-course/1.jpg'
+import events from '../../../data/Events.json';
 
 const EventSidebarMain = () => {
 

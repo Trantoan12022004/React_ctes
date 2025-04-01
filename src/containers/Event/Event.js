@@ -1,19 +1,19 @@
 import React from 'react';
-import Header from '../../../components/Header';
-import Footer from '../../../components/Footer';
-import Breadcrumb from '../../../components/Breadcrumb';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import Breadcrumb from '../../components/Breadcrumb';
 import EventMain from './EventMain';
-import ScrollToTop from '../../../components/ScrollTop';
+import ScrollToTop from '../../components/ScrollTop';
 
-import Logo from '../../../assets/images/logos/logo2.png';
+import Logo from '../../assets/images/logos/logo2.png';
 
 
 const Event = () => {
     return (
-        <body class="event-page">
+        <div class="event-page">
             <Header
                 parentMenu='event'
-                menuCategoryEnable='enable'
+                // menuCategoryEnable='enable'
                 headerNormalLogo={Logo}
                 headerStickyLogo={Logo}
             />
@@ -34,7 +34,7 @@ const Event = () => {
 
             <Footer />
 
-        </body>
+        </div>
     );
 }
 

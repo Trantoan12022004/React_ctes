@@ -124,35 +124,7 @@ class ModalEditUser extends Component {
     handleClose = () => {
         this.props.toggleModal();
     };
-    handleUpdateUser = async (userData) => {
-        try {
-            let response = await updateUser(userData);
-            console.log("check response", response)
-            if (response && response.data.errCode === 0) {
-                toast.success("Update user successfully!");
-                await this.getAllUsersFromReact();
-                this.toggleModalEdit(); // Close modal after successful update
-            } else {
-                toast.error(response.data.errMessage || "Error updating user");
-            }
-        } catch (error) {
-            console.error("Error updating user:", error);
-            toast.error("Something went wrong...");
-        }
-    };
 
-    getAllUsersFromReact = async () => {
-        try {
-            const response = await getAllUsers();
-            if (response && response.data.errCode === 0) {
-                this.setState({
-                    users: response.data.data,
-                });
-            }
-        } catch (error) {
-            console.error("Error fetching users:", error);
-        }
-    };
     render() {
         return (
             <Modal

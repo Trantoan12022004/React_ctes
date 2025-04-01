@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { ConnectedRouter as Router } from "connected-react-router";
 import { history } from "../redux";
 import { ToastContainer } from "react-toastify";
@@ -9,18 +9,15 @@ import {
     userIsAuthenticated,
     userIsNotAuthenticated,
 } from "../hoc/authentication";
-
 import { path } from "../utils";
-
 import Home from "../routes/Home";
 // import Login from '../routes/Login';
 import Login from "./Auth/Login";
-import Header from "./Header/Header";
 import System from "../routes/System";
-
-import { CustomToastCloseButton } from "../components/CustomToast";
 import HomePage from "./HomePage/HomePage";
-import { height, width } from "@fortawesome/free-brands-svg-icons/fa42Group";
+import Event from "./Event/Event";
+import EventDetails from "./Event/event-details";
+import EventRegistration from "./EventRegistration/index"
 class App extends Component {
     handlePersistorState = () => {
         const { persistor } = this.props;
@@ -69,8 +66,19 @@ class App extends Component {
                                         path={path.HOMEPAGE}
                                         component={HomePage}
                                     />
-
-                               
+                                    <Route
+                                        path={path.EVENT}
+                                        component={Event}
+                                    />
+                                    <Route
+                                        path={path.EVENT_DETAIL}
+                                        component={EventDetails}
+                                    />
+                                    <Route
+                                        path={path.EVENT_REGISTRATION}
+                                        component={EventRegistration}
+                                    />
+                         
                                 </Switch>
                             </CustomScrollbars>
                         </div>

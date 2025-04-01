@@ -1,9 +1,9 @@
 import React  from 'react';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
+import Header from '../../../components/Header';
+import Footer from '../../../comp../onents/Footer';
 import Breadcrumb from '../../components/Breadcrumb';
 import EventSidebarMain from './EventSidebarMain';
-import ScrollToTop from '../../components/ScrollTop';
+import ScrollToTop from '../../../components/ScrollTop';
 
 
 const EventSidebar = () => {

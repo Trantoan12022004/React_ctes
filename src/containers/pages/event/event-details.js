@@ -1,13 +1,13 @@
 import React  from 'react';
 import { useLocation } from 'react-router-dom';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import Breadcrumb from '../../components/Breadcrumb/EventBreadcrumbs';
+import Header from '../../../components/Header';
+import Footer from '../../../components/Footer';
+import Breadcrumb from '../../../components/Breadcrumb/EventBreadcrumbs';
 import EventDetailsMain from './EventDetailsMain';
-import ScrollToTop from '../../components/ScrollTop';
-import events from '../../data/Events.json';
+import ScrollToTop from '../../../components/ScrollTop';
+import events from '../../../data/Events.json';
 
-import Logo from '../../assets/images/logos/logo2.png';
+import Logo from '../../../assets/images/logos/logo2.png';
 
 
 const EventDetails = () => {

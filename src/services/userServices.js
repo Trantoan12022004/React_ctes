@@ -36,8 +36,11 @@ export {  getDoctorDetailService,createMarkdown, getAllCodeService, getTopDoctor
 
 
 // =========================================================================================
-const getAllCodes = () => {
-    return axios.get(`http://localhost:2004/api/allcode/get-all`);
+// Sửa lại hàm getAllCodes
+const getAllCodes = (type) => {
+    return axios.get(`http://localhost:2004/api/allcode/get-all`, {
+        params: { type: type }
+    });
 }
 const createUser = (data) => {
     return axios.post(`http://localhost:2004/api/user/create`, data)
@@ -54,6 +57,7 @@ const updateUser = (data) => {
 const deleteUser = (userId) => {
     return axios.post(`http://localhost:2004/api/user/delete`, { id: userId });
 };
+
 export { 
     getAllCodes,
     createUser,

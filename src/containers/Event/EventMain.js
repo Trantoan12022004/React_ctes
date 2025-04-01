@@ -1,20 +1,41 @@
-import React  from 'react';
-
+import React, { useState, useEffect } from 'react';
+import { getRecentEvents } from '../../services/eventServices';
+import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 
-import SingleEvent from '../../../components/Event/SingleEvent';
+import SingleEvent from '../../components/Event/SingleEvent';
 
-import events from '../../../data/Events.json';
 
 const EventMain = () => {
+    const [events, setEvents] = useState([]);
+    const [loading, setLoading] = useState(true);
 
+    useEffect(() => {
+        fetchEvents();
+    }, []);
+
+    const fetchEvents = async () => {
+        try {
+            const response = await getRecentEvents();
+            if (response && response.data && response.data.errCode === 0) {
+                setEvents(response.data.data);
+            }
+        } catch (error) {
+            console.error("Error fetching events:", error);
+            toast.error("Không thể tải danh sách sự kiện");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    if (loading) return <div>Loading...</div>;
     return (
         <div className="react-upcoming__event react-upcoming__event_page blog__area pt---100 pb---112">
             <div className="container">  
                 <div className="row align-items-center back-vertical-middle shorting__course3 mb-50">
                     <div className="col-md-6">
                         <div className="all__icons">                                   
-                            <div className="result-count">We found 24 events available for you</div>
+                            <div className="result-count">Các Hoạt Động Của Đội</div>
                         </div>
                     </div>
                     <div className="col-md-6 text-right">                                
@@ -33,17 +54,18 @@ const EventMain = () => {
                         return (
                             <div className="col-lg-3">
                                 <SingleEvent
-                                    eventID= {data.id}
-                                    eventImg= {data.image}
-                                    eventBannerImg= {data.bannerImg}
-                                    eventDayCount= {data.dayCount}
-                                    eventDate= {data.date}
-                                    eventStartTime= {data.startTime}
-                                    eventEndTime= {data.endTime}
-                                    eventCategory= {data.category}
-                                    eventTitle= {data.title}
-                                    eventBtnText= "Get Ticket"
-                                    eventLocation= {data.location}
+                                      key={data.id}
+                                      eventID={data.id}
+                                      eventImg={data.eventMarkdown?.image || ''}
+                                      eventTitle={data.name}
+                                      eventDate={data.date}
+                                      eventLocation={data.address}
+                                      eventType={data.eventType?.valueVi}
+                                      eventStatus={data.status?.valueVi}
+                                      eventDescription={data.eventMarkdown?.description}
+                                      eventCost={data.cost}
+                                      eventQuantityMember={data.quantityMember}
+                                      eventBtnText="Xem chi tiết"
                                 />
                             </div>
                         )

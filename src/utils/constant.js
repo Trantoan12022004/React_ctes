@@ -4,6 +4,9 @@ export const path = {
     LOGIN: "/login",
     LOG_OUT: "/logout",
     SYSTEM: "/system",
+    EVENT: "/event",
+    EVENT_DETAIL: "/event-details/:id",
+    EVENT_REGISTRATION: "/event-registration/:id",
 };
 
 export const languages = {

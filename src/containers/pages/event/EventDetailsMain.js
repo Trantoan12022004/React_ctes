@@ -2,10 +2,10 @@ import React  from 'react';
 import { Link } from 'react-router-dom';
 
 
-import instructor1 from '../../assets/images/instructors/9.png'
-import instructor2 from '../../assets/images/instructors/10.png'
-import instructor3 from '../../assets/images/instructors/11.png'
-import instructor4 from '../../assets/images/instructors/12.png'
+import instructor1 from '../../../assets/images/instructors/9.png'
+import instructor2 from '../../../assets/images/instructors/10.png'
+import instructor3 from '../../../assets/images/instructors/11.png'
+import instructor4 from '../../../assets/images/instructors/12.png'
 
 const CourseDetailsMain = (props) => {
     const { eventDate, eventStartTime, eventEndTime, eventLocation, eventCost, eventHost, eventTotalSlot, eventBookedSlot, eventContactNo } = props;

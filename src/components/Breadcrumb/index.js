@@ -17,7 +17,7 @@ const Breadcrumb = (props) => {
 							<h1 className="breadcrumbs-title">{pageTitle ? pageTitle : 'BreadCrumbs'}</h1>
 							<div className="back-nav">
 								<ul>
-									<li><Link to="/">Home</Link></li>
+									<li><Link to="/home">Home</Link></li>
 									<li>{pageTitle ? pageTitle : 'BreadCrumbs'}</li>
 								</ul>
 							</div>
