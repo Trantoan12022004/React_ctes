@@ -3,10 +3,7 @@ const createEvent = (data) => {
     return axios.post(`http://localhost:2004/api/event/create`, data);
 };
 const createEventDescription = (data) => {
-    return axios.post(
-        `http://localhost:2004/api/event-description/create`,
-        data
-    );
+    return axios.post(`http://localhost:2004/api/event-description/create`, data);
 };
 const getAllEvents = () => {
     return axios.get(`http://localhost:2004/api/events/get-all`);
@@ -26,6 +23,14 @@ const getEventById = (id) => {
 const getEventRegistrationsById = (id) => {
     return axios.get(`http://localhost:2004/api/events/registrations/${id}`);
 };
+const updateEventRegistration = (data) => {
+    return axios.post(`http://localhost:2004/api/events/registration-update`, data);
+};
+const deleteEventRegistration = (data) => {
+    return axios.post(`http://localhost:2004/api/events/registration-delete`, data);
+};
+
+// router.post("/api/events/registration/:id", eventController.updateEventRegistration);
 export {
     createEvent,
     createEventDescription,
@@ -34,4 +39,6 @@ export {
     registerEvent,
     getEventById,
     getEventRegistrationsById,
+    updateEventRegistration,
+    deleteEventRegistration,
 };

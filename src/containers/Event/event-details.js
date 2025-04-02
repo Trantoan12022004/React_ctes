@@ -99,7 +99,6 @@ class EventDetails extends Component {
 
     renderEventContent = () => {
         const { event } = this.state;
-        
         return (
             <div className="course-single">
                 <Header

@@ -57,7 +57,9 @@ const EventDetailsMain = (props) => {
                 {/* Tiêu đề và trạng thái sự kiện */}
                 <div className="event-detail-header mb-4">
                     <div className="event-status-badges">
-                        <span className={`status-badge ${registrationStatusClass}`}>
+                        <span
+                            className={`status-badge ${registrationStatusClass}`}
+                        >
                             {registrationStatusText}
                         </span>
                         <span className="event-type-badge">
@@ -76,9 +78,14 @@ const EventDetailsMain = (props) => {
                                         <i className="far fa-calendar-alt"></i>
                                     </div>
                                     <div className="info-content">
-                                        <span className="info-label">Thời gian</span>
+                                        <span className="info-label">
+                                            Thời gian
+                                        </span>
                                         <span className="info-value">
-                                            {new Date(eventDate).toLocaleDateString("vi-VN")} ({eventStartTime} - {eventEndTime})
+                                            {new Date(
+                                                eventDate
+                                            ).toLocaleDateString("vi-VN")}{" "}
+                                            ({eventStartTime} - {eventEndTime})
                                         </span>
                                     </div>
                                 </div>
@@ -87,8 +94,12 @@ const EventDetailsMain = (props) => {
                                         <i className="fas fa-map-marker-alt"></i>
                                     </div>
                                     <div className="info-content">
-                                        <span className="info-label">Địa điểm</span>
-                                        <span className="info-value">{eventLocation}</span>
+                                        <span className="info-label">
+                                            Địa điểm
+                                        </span>
+                                        <span className="info-value">
+                                            {eventLocation}
+                                        </span>
                                     </div>
                                 </div>
                                 <div className="info-item">
@@ -96,11 +107,19 @@ const EventDetailsMain = (props) => {
                                         <i className="fas fa-users"></i>
                                     </div>
                                     <div className="info-content">
-                                        <span className="info-label">Số lượng</span>
+                                        <span className="info-label">
+                                            Số lượng
+                                        </span>
                                         <span className="info-value">
-                                            <span className="registration-count">{eventBookedSlot || 0}</span>
-                                            <span className="registration-separator">/</span>
-                                            <span className="total-slots">{eventTotalSlot}</span>
+                                            <span className="registration-count">
+                                                {eventBookedSlot || 0}
+                                            </span>
+                                            <span className="registration-separator">
+                                                /
+                                            </span>
+                                            <span className="total-slots">
+                                                {eventTotalSlot}
+                                            </span>
                                             <span className="available-slots">
                                                 (Còn {availableSlots} chỗ trống)
                                             </span>
@@ -108,15 +127,17 @@ const EventDetailsMain = (props) => {
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div className="event-description">
                                 <h4>Mô tả sự kiện</h4>
-                                <div className="description-content">{eventDescription}</div>
+                                <div className="description-content">
+                                    {eventDescription}
+                                </div>
                             </div>
-                            
+
                             <div className="event-content">
                                 <h4>Nội dung chi tiết</h4>
-                                <div 
+                                <div
                                     className="content-html"
                                     dangerouslySetInnerHTML={{
                                         __html: eventContent,
@@ -160,15 +181,18 @@ const EventDetailsMain = (props) => {
 
                                 {registrationStatus === "full" ? (
                                     <div className="registration-status full">
-                                        <i className="fas fa-exclamation-circle"></i> Đã hết chỗ
+                                        <i className="fas fa-exclamation-circle"></i>{" "}
+                                        Đã hết chỗ
                                     </div>
                                 ) : registrationStatus === "closed" ? (
                                     <div className="registration-status closed">
-                                        <i className="fas fa-ban"></i> Đã kết thúc đăng ký
+                                        <i className="fas fa-ban"></i> Đã kết
+                                        thúc đăng ký
                                     </div>
                                 ) : registrationStatus === "canceled" ? (
                                     <div className="registration-status canceled">
-                                        <i className="fas fa-times-circle"></i> Đã hủy
+                                        <i className="fas fa-times-circle"></i>{" "}
+                                        Đã hủy
                                     </div>
                                 ) : (
                                     <Link
@@ -178,8 +202,18 @@ const EventDetailsMain = (props) => {
                                         Đăng ký tham gia
                                     </Link>
                                 )}
+
+                                {/* Thêm nút xem danh sách đăng ký trong phần sidebar */}
+                                {registrationStatus !== "canceled" && (
+                                    <Link
+                                        to={`/event-registration-details/${eventID}`}
+                                        className="start-btn"
+                                    >
+                                        Xem danh sách đăng ký
+                                    </Link>
+                                )}
                             </div>
-{/* 
+                            {/* 
                             <div className="widget react-date-sec">
                                 <h4 className="sidebar-title">Thông tin liên hệ</h4>
                                 <ul className="recent-date">

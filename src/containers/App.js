@@ -18,6 +18,7 @@ import HomePage from "./HomePage/HomePage";
 import Event from "./Event/Event";
 import EventDetails from "./Event/event-details";
 import EventRegistration from "./EventRegistration/index"
+import EventRegistrationDetails from "./EventRegistrationDetails/EventRegistrationDetails"
 class App extends Component {
     handlePersistorState = () => {
         const { persistor } = this.props;
@@ -77,6 +78,10 @@ class App extends Component {
                                     <Route
                                         path={path.EVENT_REGISTRATION}
                                         component={EventRegistration}
+                                    />
+                                    <Route
+                                        path={path.EVENT_REGISTRATION_DETAILS}
+                                        component={EventRegistrationDetails}
                                     />
                          
                                 </Switch>

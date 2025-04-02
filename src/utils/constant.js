@@ -7,6 +7,7 @@ export const path = {
     EVENT: "/event",
     EVENT_DETAIL: "/event-details/:id",
     EVENT_REGISTRATION: "/event-registration/:id",
+    EVENT_REGISTRATION_DETAILS: "/event-registration-details/:id",
 };
 
 export const languages = {

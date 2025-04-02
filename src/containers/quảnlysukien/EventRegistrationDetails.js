@@ -3,20 +3,22 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import Breadcrumb from "../../components/Breadcrumb/EventBreadcrumbs";
+import Breadcrumb from "../../components/Breadcrumb";
 import ScrollToTop from "../../components/ScrollTop";
 import Logo from "../../assets/images/logos/logo2.png";
-import ContactForm from "./ContactForm";
+import EventRegistrationList from "./EventRegistrationList";
 import { getEventById } from "../../services/eventServices";
+import { getEventRegistrationsById } from "../../services/eventServices";
 import { toast } from "react-toastify";
-import "./EventRegistration.scss";
+import "./EventRegistrationDetails.scss";
 
-class EventRegistration extends Component {
+class EventRegistrationDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
             eventId: null,
             eventData: null,
+            eventRegistrationData: null,
             isLoading: true,
         };
     }
@@ -29,9 +31,30 @@ class EventRegistration extends Component {
         if (eventId) {
             this.setState({ eventId });
             await this.fetchEventData(eventId);
+            await this.fetchEventRegistrationData(eventId);
         }
     }
 
+    fetchEventRegistrationData = async (eventId) => {
+        try {
+            // Gọi API lấy thông tin sự kiện theo ID
+            const response = await getEventRegistrationsById(eventId);
+
+            if (response && response.data.errCode === 0) {
+                this.setState({
+                    eventRegistrationData: response.data.data,
+                    isLoading: false,
+                });
+            } else {
+                toast.error("Không thể tải thông tin sự kiện");
+                this.setState({ isLoading: false });
+            }
+        } catch (error) {
+            console.error("Lỗi khi lấy thông tin sự kiện:", error);
+            toast.error("Đã xảy ra lỗi khi tải thông tin sự kiện");
+            this.setState({ isLoading: false });
+        }
+    };
     fetchEventData = async (eventId) => {
         try {
             // Gọi API lấy thông tin sự kiện theo ID
@@ -87,7 +110,7 @@ class EventRegistration extends Component {
     };
 
     renderEventContent = () => {
-        const { eventId, eventData, isLoading } = this.state;
+        const { eventId, eventData, isLoading, eventRegistrationData } = this.state;
         const { isLoggedIn } = this.props;
 
         if (isLoading) {
@@ -142,6 +165,7 @@ class EventRegistration extends Component {
         return (
             <>
             <div className="event-detail-header mb-4">
+                <h2 className="mt-3">{eventData.name}</h2>
                 <div className="event-status-badges mt-3">
                     <span className={`status-badge ${registrationStatusClass}`}>
                         {registrationStatusText}
@@ -243,31 +267,12 @@ class EventRegistration extends Component {
                 </div>
             </div>
             
-            {registrationStatus === "full" ? (
-                <div className="registration-full-notice">
-                    <div className="notice-icon">
-                        <i className="fas fa-exclamation-circle"></i>
-                    </div>
-                    <div className="notice-content">
-                        <h4>Đã hết chỗ đăng ký!</h4>
-                        <p>Sự kiện này đã đạt số lượng đăng ký tối đa. Vui lòng tham gia các sự kiện khác.</p>
-                    </div>
-                </div>
-            ) : registrationStatus === "closed" || registrationStatus === "canceled" ? (
-                <div className="registration-closed-notice">
-                    <div className="notice-icon">
-                        <i className="fas fa-ban"></i>
-                    </div>
-                    <div className="notice-content">
-                        <h4>{registrationStatus === "closed" ? "Sự kiện đã kết thúc!" : "Sự kiện đã bị hủy!"}</h4>
-                        <p>{registrationStatus === "closed" ? "Sự kiện này đã kết thúc đăng ký." : "Sự kiện này đã bị hủy vì lý do đặc biệt."}</p>
-                    </div>
-                </div>
-            ) : !isLoggedIn ? (
+ {!isLoggedIn ? (
                 this.renderLoginRequired()
             ) : (
-                <ContactForm 
+                <EventRegistrationList 
                     eventId={eventId} 
+                    eventRegistrationData={eventRegistrationData}
                     eventData={eventData}
                 />
             )}
@@ -276,35 +281,9 @@ class EventRegistration extends Component {
     };
 
     render() {
-        const { eventData, isLoading } = this.state;
-    
-        // Hiển thị loading hoặc kiểm tra trước khi render
-        if (isLoading || !eventData) {
-            return (
-                <>
-                    <Header
-                        parentMenu="event"
-                        headerNormalLogo={Logo}
-                        headerStickyLogo={Logo}
-                    />
-                    <div className="react-wrapper">
-                        <div className="react-wrapper-inner">
-                            <div className="container">
-                                <div className="text-center py-5">
-                                    <div className="spinner-border text-primary" role="status">
-                                        <span className="visually-hidden">Đang tải...</span>
-                                    </div>
-                                    <p className="mt-3">Đang tải thông tin sự kiện...</p>
-                                </div>
-                            </div>
-                            <ScrollToTop />
-                        </div>
-                    </div>
-                    <Footer />
-                </>
-            );
-        }
-    
+
+        console.log("check1", this.state.eventData)
+        console.log("check2", this.state.eventRegistrationData)
         return (
             <>
                 <Header
@@ -312,29 +291,19 @@ class EventRegistration extends Component {
                     headerNormalLogo={Logo}
                     headerStickyLogo={Logo}
                 />
-    
+
                 <div className="react-wrapper">
                     <div className="react-wrapper-inner">
-                        <Breadcrumb
-                            eventID={eventData.id}
-                            eventImg={eventData.eventMarkdown?.image}
-                            eventBannerImg={eventData.eventMarkdown?.image}
-                            eventDate={eventData.date}
-                            eventStartTime={eventData.startTime || "08:00"}
-                            eventEndTime={eventData.endTime || "17:00"}
-                            eventCategory={eventData.eventType?.valueVi || "Sự kiện"}
-                            eventTitle={eventData.name}
-                            eventLocation={eventData.address}
-                        />
-    
+                        <Breadcrumb pageTitle="Đăng Ký Tham Gia Sự Kiện" />
+
                         <div className="container">
                             {this.renderEventContent()}
                         </div>
-    
+
                         <ScrollToTop />
                     </div>
                 </div>
-    
+
                 <Footer />
             </>
         );
@@ -353,4 +322,7 @@ const mapDispatchToProps = (dispatch) => {
     return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventRegistration);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(EventRegistrationDetails);
