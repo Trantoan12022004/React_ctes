@@ -9,11 +9,13 @@ import {
     userIsAuthenticated,
     userIsNotAuthenticated,
 } from "../hoc/authentication";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import { path } from "../utils";
 import Home from "../routes/Home";
 // import Login from '../routes/Login';
 import Login from "./Auth/Login";
 import System from "../routes/System";
+import Profile from "../routes/Profile";
 import HomePage from "./HomePage/HomePage";
 import Event from "./Event/Event";
 import EventDetails from "./Event/event-details";
@@ -82,6 +84,10 @@ class App extends Component {
                                     <Route
                                         path={path.EVENT_REGISTRATION_DETAILS}
                                         component={EventRegistrationDetails}
+                                    />
+                                    <Route
+                                        path={path.USER_PROFILE}
+                                        component={Profile}
                                     />
                          
                                 </Switch>

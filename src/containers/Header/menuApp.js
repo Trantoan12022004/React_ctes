@@ -8,6 +8,10 @@ export const adminMenu = [
                 link: "/system/user-redux",
             },
             {
+                name: "Mô tả người dùng",
+                link: "/system/user-description",
+            },
+            {
                 name: "menu.admin.user-display",
                 link: "/system/user-display",
                 // subMenus: [
@@ -24,7 +28,6 @@ export const adminMenu = [
         ],
     },
     {
-        // Quản lý người dùng
         name: "Sự kiện",
         menus: [
             {

@@ -49,6 +49,15 @@ const createUser = (data) => {
 const getAllUsers = () => {
     return axios.get(`http://localhost:2004/api/users/get-all`);
 };
+const getUsersByPosition = (positionCode) => {
+    return axios.get(`http://localhost:2004/api/users/get-user-by-position/${positionCode}`);
+};
+const getUsersByRole = (roleCode) => {
+    return axios.get(`http://localhost:2004/api/users/get-user-by-role/${roleCode}`);
+};
+const getUserById = (id) => {
+    return axios.get(`http://localhost:2004/api/users/get-user-by-id/${id}`);
+};
 
 const updateUser = (data) => {
     return axios.post(`http://localhost:2004/api/user/update`, data);
@@ -58,10 +67,18 @@ const deleteUser = (userId) => {
     return axios.post(`http://localhost:2004/api/user/delete`, { id: userId });
 };
 
+const createUserDescription = (data) => {
+    return axios.post(`http://localhost:2004/api/user-description/create`, data);
+};
+
 export { 
     getAllCodes,
     createUser,
     getAllUsers,
     updateUser,
     deleteUser,
+    createUserDescription,
+    getUsersByPosition,
+    getUsersByRole,
+    getUserById,
  };

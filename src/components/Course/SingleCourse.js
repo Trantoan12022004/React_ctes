@@ -1,39 +1,74 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-
-import courseImg1 from '../../assets/images/course/1.png';
+import "./SingleCourse.scss"
+import defaultAvatar from '../../assets/images/404.png';
 
 const SingleCourse = (props) => {
-    const { itemClass, courseID, courseImg, courseTitle, courseName, courseLesson, courseEnrolled, coursePrice } = props;
-	return(
-        <div className={itemClass ? itemClass : 'course__item mb-30'}>
-            <div className="course__thumb">
-                <Link to={`/course/${courseID}`}>
-                    <img src={courseImg ? require(`../../assets/images/course/${courseImg}`) : require(`../../assets/images/course/${courseImg1}`)} alt="image" />
+    const { 
+        itemClass, 
+        personID, 
+        avatar, 
+        firstName, 
+        lastName, 
+        role, 
+        description, 
+        contactInfo 
+    } = props;
+
+    // Có thể thêm xử lý HTML content nếu cần
+    const renderMarkdown = () => {
+        if (props.markdownContent) {
+            return <div className="markdown-content" dangerouslySetInnerHTML={{ __html: props.markdownContent }} />;
+        }
+        return null;
+    }
+
+    return(
+        <div className={itemClass ? itemClass : 'person__item mb-30'}>
+            <div className="person__thumb">
+                <Link to={`/user-profile/profile/${personID}`}>
+                    <img 
+                        src={avatar || defaultAvatar} 
+                        alt={`${firstName} ${lastName}`} 
+                        className="person-avatar"
+                    />
                 </Link>
             </div>
-            <div className="course__inner">
-                <ul>
-                    <li>{courseName ? courseName : 'UX Design'}</li>
-                    <li>{courseLesson ? courseLesson : '4'} Lessons</li>
-                </ul>
-                <h3 className="react-course-title">
-                    <Link to={`/course/${courseID}`}>
-                        {courseTitle ? courseTitle : 'Dave conservatoire is the Entirely free online.'}
+            <div className="person__inner">
+                <div className="person-role">
+                    <span>{role || 'Thành viên'}</span>
+                </div>
+                <h3 className="person-name">
+                    <Link to={`/user-profile/profile/${personID}`}>
+                        {firstName && lastName ? `${firstName} ${lastName}` : 'Chưa có thông tin'}
                     </Link>
                 </h3>
-                <div className="course__card-icon d-flex align-items-center">
-                    <div className="course__card-icon--1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                        <span>{courseEnrolled ? courseEnrolled : '77'} Students</span>
+                <div className="person-description">
+                    <p>{description || 'Chưa cập nhật thông tin mô tả'}</p>
+                </div>
+                {/* {renderMarkdown()} */}
+                <div className="person__card-info d-flex align-items-center">
+                    <div className="person__card-info--contact">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-mail">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <span>{contactInfo?.email || 'Chưa cập nhật email'}</span>
                     </div>                                            
-                    <div className="react__user">
-                        {coursePrice ? coursePrice : '$68.00'}
+                    <div className="person__social-links">
+                        {contactInfo?.phone && (
+                            <a href={`tel:${contactInfo.phone}`} className="phone-link" title="Gọi điện">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-phone">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                            </a>
+                        )}
+                        {/* Có thể thêm các liên kết mạng xã hội khác tại đây */}
                     </div>
                 </div>
             </div>                                    
         </div>
-	)
+    );
 }
 
-export default SingleCourse
+export default SingleCourse;

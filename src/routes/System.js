@@ -6,6 +6,7 @@ import UserRedux from "../containers/System/UserRedux";
 import UserDisplay from "../containers/System/UserDisplay";
 import EventManage from "../containers/System/EventManage";
 import EventDescription from "../containers/System/EventDescription";
+import UserDescription from "../containers/System/UserDescription";
 import Header from "../containers/Header/Header";
 import MarkdownEditor from "../containers/System/MarkdownEditor";
 import { toast } from "react-toastify";
@@ -34,9 +35,11 @@ class System extends Component {
 
     render() {
         const { systemMenuPath, isLoggedIn, userInfo } = this.props;
+        console.log(isLoggedIn)
+
         
         // Chuyển hướng về trang chủ nếu không phải là admin
-        if (!isLoggedIn || (userInfo && userInfo.roleId !== 'R1')) {
+        if (!isLoggedIn) {
             return <Redirect to="/home" />;
         }
 
@@ -66,6 +69,10 @@ class System extends Component {
                             <Route
                                 path="/system/markdown-editor"
                                 component={MarkdownEditor}
+                            />
+                            <Route
+                                path="/system/user-description"
+                                component={UserDescription}
                             />
                             <Route
                                 component={() => {

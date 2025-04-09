@@ -1,0 +1,86 @@
+.home-header-container {
+  height: 60px;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.doctor-detail-container {
+  margin-top: 80px;
+  padding: 20px 100px;
+}
+.doctor-detail-container .intro-doctor {
+  display: flex;
+  margin-bottom: 45px;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+  border-radius: 8px;
+}
+.doctor-detail-container .intro-doctor .content-left {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-right: 20px;
+  overflow: hidden;
+}
+.doctor-detail-container .intro-doctor .content-left img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.doctor-detail-container .intro-doctor .content-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.doctor-detail-container .intro-doctor .content-right .up {
+  font-size: 20px;
+  font-weight: 600;
+  padding-top: 15px;
+}
+.doctor-detail-container .intro-doctor .content-right .down {
+  font-size: 13px;
+  color: #555;
+}
+.doctor-detail-container .detail-info-doctor {
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+}
+.doctor-detail-container .detail-info-doctor h1, .doctor-detail-container .detail-info-doctor h2, .doctor-detail-container .detail-info-doctor h3 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+.doctor-detail-container .detail-info-doctor img {
+  max-width: 100%;
+  height: auto;
+  margin: 15px 0;
+}
+.doctor-detail-container .detail-info-doctor ul, .doctor-detail-container .detail-info-doctor ol {
+  padding-left: 40px;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+  .doctor-detail-container {
+    padding: 20px;
+  }
+  .doctor-detail-container .intro-doctor {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .doctor-detail-container .intro-doctor .content-left {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}/*# sourceMappingURL=DetailDoctor.css.map */
