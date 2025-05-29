@@ -23,7 +23,7 @@ class HomePage extends Component {
                 <Event />
                 <Campus />
                 <Course/>
-                <Blogs />
+                {/* <Blogs /> */}
                 <Footer />
 
             </div>

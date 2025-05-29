@@ -14,11 +14,11 @@ const FooterTwo = (props) => {
                         <div className="footer-top-cta wow animate__fadeInUp" data-wow-duration="0.6s">
                             <div className="row">
                                 <div className="col-lg-7">
-                                    <h4>{ctaSubtitle ? ctaSubtitle : 'Free Online Course'}</h4>
-                                    <h3>{ctaTitle ? ctaTitle : 'Ready to dive in? Start your free Course today.'}</h3>
+                                    <h4>{ctaSubtitle ? ctaSubtitle : 'Yêu cầu trợ giúp'}</h4>
+                                    <h3>{ctaTitle ? ctaTitle : 'Bạn có yêu cầu cần chúng tôi hỗ trợ, gửi yêu cầu cho chúng tôi nhé!'}</h3>
                                 </div>
                                 <div className="col-lg-5 text-right">
-                                    <Link to="#">{ctaBtn ? ctaBtn : 'Go To FAQ'} <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></Link>
+                                    <Link to="/help-request">{ctaBtn ? ctaBtn : 'Go To FAQ'} <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></Link>
                                 </div>
                             </div>
                         </div>

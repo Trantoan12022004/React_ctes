@@ -45,6 +45,7 @@ class EventRegistrationDetails extends Component {
         try {
             // Gọi API lấy thông tin sự kiện theo ID
             const response = await getEventRegistrationsById(eventId);
+            console.log("Response from getEventRegistrationsById:", response)
 
             if (response && response.data.errCode === 0) {
                 this.setState({

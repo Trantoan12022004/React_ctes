@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getRecentEvents } from '../../services/eventServices';
+import { getRecentEvents, getAllEvents } from '../../services/eventServices';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 
@@ -16,7 +16,7 @@ const EventMain = () => {
 
     const fetchEvents = async () => {
         try {
-            const response = await getRecentEvents();
+            const response = await getAllEvents();
             if (response && response.data && response.data.errCode === 0) {
                 setEvents(response.data.data);
             }

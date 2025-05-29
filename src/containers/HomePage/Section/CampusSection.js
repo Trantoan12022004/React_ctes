@@ -13,7 +13,7 @@ const Campus = () => {
     return (
         <div className="campus_sec pt---100 pb---110">
             <div className="container">
-                <SectionTitle Title="Campus Life" />
+                <SectionTitle Title="Tiêu chí hướng tới" />
                 <div className="row">
                     <div className="col-lg-7">
                         <div className="about__content">
@@ -23,7 +23,7 @@ const Campus = () => {
                                         <img src={campusImg1} alt="image" />
                                     </div>
                                     <div className="text">
-                                        <h4>Do More, Stress Less</h4>
+                                        <h4>Học Tập</h4>
                                         <p>Why I say old chap that is spiffing he legged <br/>it in my flat easy peasy.</p>
                                     </div>
                                     <Link to="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></Link>
@@ -33,7 +33,7 @@ const Campus = () => {
                                         <img src={campusImg2} alt="image" />
                                     </div>
                                     <div className="text">
-                                        <h4>The Business Intelligence</h4>
+                                        <h4>Tinh nguyện</h4>
                                         <p>Why I say old chap that is spiffing he legged <br/>it in my flat easy peasy.</p>
                                     </div>
                                     <Link to="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></Link>
@@ -43,7 +43,7 @@ const Campus = () => {
                                         <img src={campusImg3} alt="image" />
                                     </div>
                                     <div className="text">
-                                        <h4>System Administration</h4>
+                                        <h4>Giải trí và Kết nối</h4>
                                         <p>Why I say old chap that is spiffing he legged <br/>it in my flat easy peasy.</p>
                                     </div>
                                     <Link to="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></Link>
@@ -59,7 +59,7 @@ const Campus = () => {
                     </div>
                 </div>
                 <div className="text-center">
-                    <Link to="/about" className="more-about"> More about Campus Life <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></Link>
+                    <Link to="/contact" className="more-about"> Thêm về chúng tôi <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></Link>
                 </div>
             </div>
         </div>

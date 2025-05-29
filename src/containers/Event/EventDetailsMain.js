@@ -13,14 +13,12 @@ const EventDetailsMain = (props) => {
         eventHost,
         eventTotalSlot,
         eventBookedSlot,
-        eventContactNo,
         eventDescription,
         eventContent,
-        eventTitle,
         eventCategory,
         eventStatus,
     } = props;
-
+console.log("EventDetailsMain props:", props);
     // Format cost to VND
     const formatCost = (cost) => {
         return new Intl.NumberFormat("vi-VN", {
@@ -41,11 +39,11 @@ const EventDetailsMain = (props) => {
         registrationStatus = "full";
         registrationStatusText = "Hết chỗ";
         registrationStatusClass = "status-full";
-    } else if (eventStatus?.keyName === "S2") {
+    } else if (eventStatus === "S2") {
         registrationStatus = "closed";
         registrationStatusText = "Đã kết thúc";
         registrationStatusClass = "status-closed";
-    } else if (eventStatus?.keyName === "S3") {
+    } else if (eventStatus === "S3") {
         registrationStatus = "canceled";
         registrationStatusText = "Đã hủy";
         registrationStatusClass = "status-canceled";

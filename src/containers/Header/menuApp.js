@@ -38,6 +38,24 @@ export const adminMenu = [
                 name: "Mô tả sự kiện",
                 link: "/system/event-description",
             },
+            {
+                name: "Danh sách sự kiện",
+                link: "/system/event-display",
+                // subMenus: [
+                //     {
+                //         name: "menu.system.system-administrator.user-manage",
+                //         link: "",
+                //     },
+                //     {
+                //         name: "menu.system.system-administrator.user-redux",
+                //         link: "/system/user-redux",
+                //     },
+                // ],
+            },
+              {
+                name: "Đăng ký sự kiện",
+                link: "/system/event-registration/:id",
+            },
         ],
     },
 ];

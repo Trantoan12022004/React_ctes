@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import "./EventManage.scss";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {createEvent} from "../../services/eventServices"
+import { createEvent } from "../../services/eventServices";
+import { createNotification } from "../../services/notificationServices";
 class EventManage extends Component {
     constructor(props) {
         super(props);
@@ -33,7 +34,7 @@ class EventManage extends Component {
             date: "Event date",
             address: "Event address",
             typeEventCode: "Event type",
-            statusCode: "Event status"
+            statusCode: "Event status",
         };
 
         for (let field in requiredFields) {
@@ -64,6 +65,12 @@ class EventManage extends Component {
 
             if (response && response.data.errCode === 0) {
                 toast.success("Create new event successfully!");
+                console.log("Event created successfully:", response.data);
+                // Lấy ID của sự kiện mới tạo từ response
+                const newEventId = response.data.id;
+
+                // Tạo thông báo cho tất cả người dùng về sự kiện mới
+                await this.createEventNotification(newEventId);
                 this.setState({
                     typeEventCode: "",
                     name: "",
@@ -81,7 +88,44 @@ class EventManage extends Component {
             console.error("Error creating event:", error);
         }
     };
+    // Hàm mới để tạo thông báo sự kiện
+    createEventNotification = async (eventId) => {
+        try {
+            const eventDate = new Date(this.state.date).toLocaleDateString("vi-VN");
+            const userId = this.props.userInforr?.id;
 
+            if (!userId) {
+                console.error("Không có thông tin người dùng để tạo thông báo");
+                return;
+            }
+            const notificationData = {
+                title: "Sự kiện mới được tạo", // title là bắt buộc
+                message: `Sự kiện "${this.state.name}" sẽ diễn ra vào ngày ${eventDate} tại ${this.state.address}.`, // message thay vì content
+                type: "event_created", // type thay vì notification_type
+                reference_id: eventId,
+                reference_type: "EVENT",
+                link: `/event-details/${eventId}`,
+                created_by: userId, // created_by thay vì sender_id (bắt buộc)
+                send_to_all: true, // Gửi cho tất cả người dùng
+                // Có thể chọn một trong những cách sau để xác định người nhận:
+                // 1. send_to_all: true - gửi cho tất cả
+                // 2. user_ids: [1, 2, 3] - gửi cho danh sách người dùng cụ thể
+                // 3. role_code: "R2" - gửi cho nhóm người dùng theo role (ví dụ: R2 là Volunteer)
+                // 4. user_id: 5 - gửi cho một người dùng cụ thể
+            };
+
+            const response = await createNotification(notificationData);
+
+            if (response && response.errCode === 0) {
+                console.log("Thông báo sự kiện đã được tạo thành công:", response.data);
+            } else {
+                console.error("Lỗi khi tạo thông báo:", response.errMessage);
+            }
+        } catch (error) {
+            console.error("Lỗi khi tạo thông báo sự kiện:", error);
+            // Không hiển thị lỗi cho người dùng vì đây là tính năng phụ
+        }
+    };
     render() {
         return (
             <div className="event-manage-container">
@@ -92,13 +136,7 @@ class EventManage extends Component {
                     <form className="row g-3">
                         <div className="col-md-6">
                             <label className="form-label">Event Type</label>
-                            <select
-                                className="form-select"
-                                value={this.state.typeEventCode}
-                                onChange={(event) =>
-                                    this.handleOnChangeInput(event, "typeEventCode")
-                                }
-                            >
+                            <select className="form-select" value={this.state.typeEventCode} onChange={(event) => this.handleOnChangeInput(event, "typeEventCode")}>
                                 <option value="">Choose event type...</option>
                                 <option value="E1">Small Event</option>
                                 <option value="E2">Medium Event</option>
@@ -108,38 +146,17 @@ class EventManage extends Component {
 
                         <div className="col-md-6">
                             <label className="form-label">Event Name</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                value={this.state.name}
-                                onChange={(event) =>
-                                    this.handleOnChangeInput(event, "name")
-                                }
-                            />
+                            <input type="text" className="form-control" value={this.state.name} onChange={(event) => this.handleOnChangeInput(event, "name")} />
                         </div>
 
                         <div className="col-md-6">
                             <label className="form-label">Date</label>
-                            <input
-                                type="date"
-                                className="form-control"
-                                value={this.state.date}
-                                onChange={(event) =>
-                                    this.handleOnChangeInput(event, "date")
-                                }
-                            />
+                            <input type="date" className="form-control" value={this.state.date} onChange={(event) => this.handleOnChangeInput(event, "date")} />
                         </div>
 
                         <div className="col-12">
                             <label className="form-label">Address</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                value={this.state.address}
-                                onChange={(event) =>
-                                    this.handleOnChangeInput(event, "address")
-                                }
-                            />
+                            <input type="text" className="form-control" value={this.state.address} onChange={(event) => this.handleOnChangeInput(event, "address")} />
                         </div>
 
                         <div className="col-md-6">
@@ -149,9 +166,7 @@ class EventManage extends Component {
                                 className="form-control"
                                 min="0"
                                 value={this.state.quantityMember}
-                                onChange={(event) =>
-                                    this.handleOnChangeInput(event, "quantityMember")
-                                }
+                                onChange={(event) => this.handleOnChangeInput(event, "quantityMember")}
                             />
                         </div>
 
@@ -163,21 +178,13 @@ class EventManage extends Component {
                                 step="0.01"
                                 min="0"
                                 value={this.state.cost}
-                                onChange={(event) =>
-                                    this.handleOnChangeInput(event, "cost")
-                                }
+                                onChange={(event) => this.handleOnChangeInput(event, "cost")}
                             />
                         </div>
 
                         <div className="col-md-6">
                             <label className="form-label">Status</label>
-                            <select
-                                className="form-select"
-                                value={this.state.statusCode}
-                                onChange={(event) =>
-                                    this.handleOnChangeInput(event, "statusCode")
-                                }
-                            >
+                            <select className="form-select" value={this.state.statusCode} onChange={(event) => this.handleOnChangeInput(event, "statusCode")}>
                                 <option value="">Choose status...</option>
                                 <option value="S1">Ongoing</option>
                                 <option value="S2">Completed</option>
@@ -186,11 +193,7 @@ class EventManage extends Component {
                         </div>
 
                         <div className="col-12">
-                            <button
-                                type="button"
-                                className="btn btn-primary"
-                                onClick={() => this.handleSaveEvent()}
-                            >
+                            <button type="button" className="btn btn-primary" onClick={() => this.handleSaveEvent()}>
                                 Save Event
                             </button>
                         </div>
@@ -204,6 +207,7 @@ class EventManage extends Component {
 const mapStateToProps = (state) => {
     return {
         language: state.app.language,
+        userInforr: state.user.userInforr,
     };
 };
 

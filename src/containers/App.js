@@ -21,6 +21,11 @@ import Event from "./Event/Event";
 import EventDetails from "./Event/event-details";
 import EventRegistration from "./EventRegistration/index"
 import EventRegistrationDetails from "./EventRegistrationDetails/EventRegistrationDetails"
+import Recruitment from "./Recruitment/index";
+import Contact from "./Contact/Contact";
+import ForgotPassword from "./Auth/Forgot_Password";
+import HelpRequest from "./HelpRequest/index";
+import HelpRequestList from "./HelpRequest/HelpRequestList";
 class App extends Component {
     handlePersistorState = () => {
         const { persistor } = this.props;
@@ -88,6 +93,26 @@ class App extends Component {
                                     <Route
                                         path={path.USER_PROFILE}
                                         component={Profile}
+                                    />
+                                    <Route
+                                        path={path.RECRUITMENT}
+                                        component={Recruitment}
+                                    />
+                                    <Route
+                                        path={path.CONTACT}
+                                        component={Contact}
+                                    />
+                                    <Route
+                                        path={path.FORGOT_PASSWORD}
+                                        component={ForgotPassword}
+                                    />
+                                    <Route
+                                        path={path.HELP_REQUEST}
+                                        component={HelpRequest}
+                                    />
+                                    <Route
+                                        path={path.HELP_REQUEST_LIST}
+                                        component={HelpRequestList}
                                     />
                          
                                 </Switch>

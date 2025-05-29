@@ -8,43 +8,34 @@ const handleLoginApi = (userEmail, userPassword) => {
     });
 };
 
-
-
-
-
-
-
-
-
 const getAllCodeService = (type) => {
     return axios.get(`http://localhost:2004/allcode?type=${type}`);
 };
 
 const getTopDoctorsService = () => {
     return axios.get(`http://localhost:2004/api/get-all-doctors`);
-}
+};
 
 const createMarkdown = (data) => {
-    return axios.post(`http://localhost:2004/api/create-markdown`, data)
-}
+    return axios.post(`http://localhost:2004/api/create-markdown`, data);
+};
 const getDoctorDetailService = (id) => {
     return axios.get(`http://localhost:2004/api/get-detail-doctor-by-id?id=${id}`);
 };
 
 export { handleLoginApi };
-export {  getDoctorDetailService,createMarkdown, getAllCodeService, getTopDoctorsService };
-
+export { getDoctorDetailService, createMarkdown, getAllCodeService, getTopDoctorsService };
 
 // =========================================================================================
 // Sửa lại hàm getAllCodes
 const getAllCodes = (type) => {
     return axios.get(`http://localhost:2004/api/allcode/get-all`, {
-        params: { type: type }
+        params: { type: type },
     });
-}
+};
 const createUser = (data) => {
-    return axios.post(`http://localhost:2004/api/user/create`, data)
-}
+    return axios.post(`http://localhost:2004/api/user/create`, data);
+};
 
 const getAllUsers = () => {
     return axios.get(`http://localhost:2004/api/users/get-all`);
@@ -71,14 +62,17 @@ const createUserDescription = (data) => {
     return axios.post(`http://localhost:2004/api/user-description/create`, data);
 };
 
-export { 
-    getAllCodes,
-    createUser,
-    getAllUsers,
-    updateUser,
-    deleteUser,
-    createUserDescription,
-    getUsersByPosition,
-    getUsersByRole,
-    getUserById,
- };
+export const createHelpRequest = (data) => {
+    console.log("Service sending data:", data);
+    return axios.post(`http://localhost:2004/api/help-request/create`, data, {
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+};
+export const getAllHelpRequests = () => {
+    return axios.post(`http://localhost:2004/api/help-request/display`, {
+    });
+};
+
+export { getAllCodes, createUser, getAllUsers, updateUser, deleteUser, createUserDescription, getUsersByPosition, getUsersByRole, getUserById, };

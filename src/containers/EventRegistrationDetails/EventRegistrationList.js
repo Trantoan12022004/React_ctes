@@ -30,8 +30,7 @@ class EventRegistrationList extends Component {
             editingRegistration: { ...registration },
         });
 
-        console.log(this.state.editingRegistration)
-
+        console.log(this.state.editingRegistration);
     };
     // Hàm đóng modal chỉnh sửa
     handleCloseEdit = () => {
@@ -58,9 +57,7 @@ class EventRegistrationList extends Component {
             // Gọi API cập nhật thông tin đăng ký
             // Giả định bạn có service updateEventRegistration
             const response = await updateEventRegistration(editingRegistration);
-
-            console.log(editingRegistration.eventId);
-            console.log(this);
+            console.log("check response updateEventRegistration", response);
             if (response && response.data.errCode === 0) {
                 toast.success("Cập nhật thông tin đăng ký thành công");
                 if (this.props.onRefreshData) {
@@ -107,7 +104,7 @@ class EventRegistrationList extends Component {
             showConfirmDelete: true,
             deleteId: { ...registration },
         });
-        console.log(this.state.deleteId)
+        console.log(this.state.deleteId);
     };
 
     // 6. Hàm hủy xóa đăng ký
@@ -122,7 +119,7 @@ class EventRegistrationList extends Component {
     handleDeleteRegistration = async () => {
         try {
             const { deleteId } = this.state;
-            console.log("check state", this.state)
+            console.log("check state", this.state);
             // Gọi API xóa đăng ký
             // Giả định bạn có service deleteEventRegistration
             const response = await deleteEventRegistration(deleteId);
@@ -207,7 +204,7 @@ class EventRegistrationList extends Component {
         }
 
         const filteredRegistrations = this.getFilteredRegistrations();
-
+        console.log("check filteredRegistrations", filteredRegistrations);
         return (
             <div className="event-registration-container">
                 <div className="container-fuild">
@@ -259,6 +256,8 @@ class EventRegistrationList extends Component {
                                                 <th scope="col">Trạng thái</th>
                                                 <th scope="col">Phương thức</th>
                                                 <th scope="col">Chi tiết</th>
+                                                <th scope="col">Điểm danh</th>
+                                                <th scope="col">Ngày điểm danh</th>
                                                 <th scope="col" style={{ width: "150px" }}>
                                                     Thao tác
                                                 </th>
@@ -283,6 +282,25 @@ class EventRegistrationList extends Component {
                                                             <button className="btn btn-sm btn-outline-primary" onClick={() => this.toggleRow(registration.id)}>
                                                                 <i className={`fas fa-chevron-${expandedRow === registration.id ? "up" : "down"}`}></i>
                                                             </button>
+                                                        </td>
+                                                        <td>
+                                                            <div className="attendance-toggle">
+                                                                <div className="form-check form-switch">
+                                                                    <input
+                                                                        className="form-check-input"
+                                                                        type="checkbox"
+                                                                        id={`attendance-${registration.id}`}
+                                                                        checked={registration.attendanceStatus === 1}
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            {registration.attendanceTime
+                                                                ? this.formatDate(registration.attendanceTime) +
+                                                                  " " +
+                                                                  new Date(registration.attendanceTime).toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" })
+                                                                : "-"}
                                                         </td>
                                                         <td>
                                                             {this.canModifyRegistration(registration) ? (

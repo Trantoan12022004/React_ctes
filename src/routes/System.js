@@ -9,6 +9,8 @@ import EventDescription from "../containers/System/EventDescription";
 import UserDescription from "../containers/System/UserDescription";
 import Header from "../containers/Header/Header";
 import MarkdownEditor from "../containers/System/MarkdownEditor";
+import EventDisplay from "../containers/System/EventDisplay";
+import EventRegistrationManage from "../containers/System/EventRegistrationManage";
 import { toast } from "react-toastify";
 
 class System extends Component {
@@ -73,6 +75,14 @@ class System extends Component {
                             <Route
                                 path="/system/user-description"
                                 component={UserDescription}
+                            />
+                            <Route
+                                path="/system/event-display"
+                                component={EventDisplay}
+                            />
+                            <Route
+                                path="/system/event-registration/:id"
+                                component={EventRegistrationManage}
                             />
                             <Route
                                 component={() => {

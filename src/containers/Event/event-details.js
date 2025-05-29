@@ -5,7 +5,7 @@ import Footer from "../../components/Footer";
 import Breadcrumb from "../../components/Breadcrumb/EventBreadcrumbs";
 import EventDetailsMain from "./EventDetailsMain";
 import ScrollToTop from "../../components/ScrollTop";
-import { getRecentEvents } from "../../services/eventServices";
+import { getRecentEvents, getAllEvents } from "../../services/eventServices";
 import { toast } from "react-toastify";
 import Logo from "../../assets/images/logos/logo2.png";
 import "./EventDetails.scss"; // Tạo file CSS mới cho component này
@@ -33,7 +33,7 @@ class EventDetails extends Component {
     fetchEventDetail = async (eventId) => {
         try {
             // Gọi API lấy thông tin sự kiện
-            const response = await getRecentEvents();
+            const response = await getAllEvents();
             
             if (response && response.data.errCode === 0) {
                 const eventData = response.data.data.find(
@@ -99,6 +99,8 @@ class EventDetails extends Component {
 
     renderEventContent = () => {
         const { event } = this.state;
+        console.log("Event Data:", event);
+        // console.log("Event Details:", event);
         return (
             <div className="course-single">
                 <Header
@@ -131,6 +133,7 @@ class EventDetails extends Component {
                             eventTitle={event.name}
                             eventLocation={event.address}
                             eventCost={event.cost || "0"}
+                            eventStatus={event.statusCode}
                             eventHost={"CTES"}
                             eventTotalSlot={event.quantityMember || 0}
                             eventBookedSlot={event.registrationCount || 0}

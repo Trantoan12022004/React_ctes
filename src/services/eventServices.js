@@ -30,6 +30,22 @@ const deleteEventRegistration = (data) => {
     return axios.post(`http://localhost:2004/api/events/registration-delete`, data);
 };
 
+const deleteEvent = (data) => {
+    return axios.post(`http://localhost:2004/api/event/delete`,data);
+};
+
+const updateEvent = (data) => {
+    return axios.post(`http://localhost:2004/api/event/update`, data);
+};
+
+const sendEventNotification = (data) => {
+    return axios.post(`http://localhost:2004/api/notifications/send-event`, data);
+};
+
+const getEventStatistics = (data) => {
+    return axios.post(`http://localhost:2004/api/events/statistics`, data );
+};
+
 // router.post("/api/events/registration/:id", eventController.updateEventRegistration);
 export {
     createEvent,
@@ -41,4 +57,8 @@ export {
     getEventRegistrationsById,
     updateEventRegistration,
     deleteEventRegistration,
+    deleteEvent,
+    updateEvent,
+    sendEventNotification, 
+    getEventStatistics
 };

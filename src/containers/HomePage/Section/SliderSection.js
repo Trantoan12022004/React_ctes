@@ -16,6 +16,7 @@ const HomeSlider = () => {
     const fetchEvents = async () => {
         try {
             const response = await getRecentEvents();
+            console.log("Response from getRecentEvents:", response);
             if (response && response.data && response.data.errCode === 0) {
                 console.log("Event data:", response.data.data);
                 setEvents(response.data.data);
